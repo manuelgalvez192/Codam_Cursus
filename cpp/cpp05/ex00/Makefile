@@ -12,7 +12,7 @@ RM = rm -f
 
 # Archivos fuente
 SRCS = main.cpp \
-		bureaucrat.cpp
+		Bureaucrat.cpp
 
 # Archivos objeto
 OBJS = $(SRCS:.cpp=.o)

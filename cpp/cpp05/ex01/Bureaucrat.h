@@ -11,8 +11,11 @@
 /* ************************************************************************** */
 
 #pragma once
+
 #include <iostream>
 #include <string>
+
+class Form;
 
 class Bureaucrat
 {
@@ -26,10 +29,22 @@ class Bureaucrat
 
         std::string getName() const;
         int getGrade() const;
+        void signForm(Form &form);
 
         void incrementGrade();
         void decrementGrade();
 
+        class GradeTooHighException : public std::exception
+        {
+            public:
+                const char *what() const throw();
+        };
+
+        class GradeTooLowException : public std::exception
+        {
+            public:
+                const char *what() const throw();
+        };
 
     private:
         std::string name;

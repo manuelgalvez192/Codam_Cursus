@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #pragma once
+
 #include "Bureaucrat.h"
 #include <iostream>
 #include <string>
@@ -31,11 +32,23 @@ class Form
 
 		void beSigned(const Bureaucrat &bureaucrat);
 
+		class GradeTooHighException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
+		class GradeTooLowException : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
 	private:
-		const std::string name;
-		bool isSigned;
-		const int gradeToSign;
-		const int gradeToExecute;
+		const		std::string name;
+		bool		isSigned;
+		const int	gradeToSign;
+		const int	gradeToExecute;
 	
 };
 
