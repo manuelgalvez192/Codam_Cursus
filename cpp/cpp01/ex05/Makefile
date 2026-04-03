@@ -5,37 +5,35 @@ NAME = harl
 CXX = c++
 
 # Flags para el compilador
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iheader
 
 # Comando para eliminar archivos
 RM = rm -f
 
 # Archivos fuente
-SRCS = main.cpp \
-		Harl.cpp
-	   
-
+SRCS = src/Harl.cpp
+	   src/main.cpp
 # Archivos objeto
-OBJS = $(SRCS:.cpp=.o)
+OBJS = $(patsubst src/%.cpp,%.o,$(SRCS))
 
 # Target por defecto
 all: $(NAME)
 
-# CÃ³mo compilar el binario
+# Cómo compilar el binario
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
-# CÃ³mo compilar archivos .o a partir de .cpp
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -o $@ -c $<
+# Cómo compilar archivos .o a partir de .cpp
+%.o: src/%.cpp
+$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 # Limpiar archivos objeto
 clean:
-	$(RM) $(OBJS)
+$(RM) $(OBJS)
 
 # Limpiar todo (binario + objetos)
 fclean: clean
-	$(RM) $(NAME)
+$(RM) $(NAME)
 
 # Recompilar desde cero
 re: fclean all
