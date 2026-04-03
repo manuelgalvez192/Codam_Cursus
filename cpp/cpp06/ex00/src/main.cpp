@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.h                                  :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgalvez- <mgalvez-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/03 17:03:32 by mgalvez-          #+#    #+#             */
-/*   Updated: 2026/04/03 17:03:32 by mgalvez-         ###   ########.fr       */
+/*   Created: 2026/04/03 19:03:46 by mgalvez-          #+#    #+#             */
+/*   Updated: 2026/04/03 19:03:46 by mgalvez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "../header/ScalarConverter.h"
 
-#include <iostream>
-#include <string>
-#include <climits>
-#include <cmath>
-
-class ScalarConverter
+int main(int argc, char* argv[])
 {
-	public:
-		static void convert(const std::string& literal);
+	if (argc != 2)
+	{
+		std::cerr << "Usage: " << argv[0] << " <literal>" << std::endl;
+		return 1;
+	}
 
-	private:
-		ScalarConverter();
-		ScalarConverter(const ScalarConverter&);
-		ScalarConverter& operator=(const ScalarConverter&);
-		~ScalarConverter();
-};
+	std::string literal(argv[1]);
+	ScalarConverter::convert(literal);
+
+	return 0;
+}
