@@ -1,4 +1,4 @@
-NAME = clap
+NAME = Serializer
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -g3 -Iheader
@@ -11,8 +11,8 @@ CYAN	= \033[0;36m
 RESET	= \033[0m
 BOLD	= \033[1m
 
-SRCS = src/ClapTrap.cpp \
-		src/main.cpp
+SRCS = src/main.cpp \
+		src/Serializer.cpp
 
 OBJS = $(patsubst src/%.cpp,%.o,$(SRCS))
 

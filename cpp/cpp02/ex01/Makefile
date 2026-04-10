@@ -1,42 +1,42 @@
-# Nombre del proyecto
 NAME = fixed
 
-# Compilador de C++
 CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -g3 -Iheader
 
-# Flags para el compilador
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iheader
-
-# Comando para eliminar archivos
 RM = rm -f
 
-# Archivos fuente
-SRCS = src/Fixed.cpp
-	   src/main.cpp
-# Archivos objeto
+GREEN	= \033[0;32m
+YELLOW	= \033[0;33m
+CYAN	= \033[0;36m
+RESET	= \033[0m
+BOLD	= \033[1m
+
+SRCS = src/Fixed.cpp \
+		src/main.cpp
+
 OBJS = $(patsubst src/%.cpp,%.o,$(SRCS))
 
-# Target por defecto
 all: $(NAME)
 
-# Cómo compilar el binario
 $(NAME): $(OBJS)
-$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+	@echo "$(CYAN)$(BOLD)Linking $(NAME)...$(RESET)"
+	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+	@echo "$(GREEN)$(BOLD)âœ“ $(NAME) compiled successfully!$(RESET)"
 
-# Cómo compilar archivos .o a partir de .cpp
 %.o: src/%.cpp
-$(CXX) $(CXXFLAGS) -o $@ -c $<
+	@echo "$(YELLOW)Compiling $<...$(RESET)"
+	@$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-# Limpiar archivos objeto
 clean:
-$(RM) $(OBJS)
+	@echo "$(YELLOW)Cleaning object files...$(RESET)"
+	@$(RM) $(OBJS)
+	@echo "$(GREEN)Done.$(RESET)"
 
-# Limpiar todo (binario + objetos)
 fclean: clean
-$(RM) $(NAME)
+	@echo "$(YELLOW)Removing $(NAME)...$(RESET)"
+	@$(RM) $(NAME)
+	@echo "$(GREEN)Done.$(RESET)"
 
-# Recompilar desde cero
 re: fclean all
 
-# Asegura que estos nombres no son archivos
 .PHONY: all clean fclean re

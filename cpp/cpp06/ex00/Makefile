@@ -1,7 +1,7 @@
 NAME = ScalarConverter
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -Iheader
+CXXFLAGS = -Wall -Wextra -Werror -g3 -Iheader
 
 RM = rm -f
 
@@ -11,7 +11,7 @@ CYAN	= \033[0;36m
 RESET	= \033[0m
 BOLD	= \033[1m
 
-SRCS =	src/ScalarConverter.cpp \
+SRCS = src/ScalarConverter.cpp \
 		src/main.cpp
 
 OBJS = $(patsubst src/%.cpp,%.o,$(SRCS))
