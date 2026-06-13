@@ -12,7 +12,6 @@ RESET	= \033[0m
 BOLD	= \033[1m
 
 SRCS =	src/main.cpp
-		src/Span.cpp
 
 OBJS = $(patsubst src/%.cpp,%.o,$(SRCS))
 
