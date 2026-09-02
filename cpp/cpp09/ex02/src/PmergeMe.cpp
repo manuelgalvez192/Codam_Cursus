@@ -243,7 +243,7 @@ void PmergeMe::process(int argc, char **argv)
 	std::cout << std::endl;
 
 	double vectorTime = std::chrono::duration<double, std::micro>(endVec - startVec).count();
-double dequeTime = std::chrono::duration<double, std::micro>(endDeq - startDeq).count();
+	double dequeTime = std::chrono::duration<double, std::micro>(endDeq - startDeq).count();
 
 	std::cout << std::fixed << std::setprecision(5);
 	std::cout << "Time to process a range of " << vector.size()

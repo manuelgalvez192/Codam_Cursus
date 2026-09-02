@@ -113,6 +113,29 @@ void notFound()
 	}
 }
 
+void testConst()
+{
+	std::cout << "\n=== Test: Const Container ===" << std::endl;
+
+	const std::vector<int> v = []{
+		std::vector<int> tmp;
+		tmp.push_back(10);
+		tmp.push_back(20);
+		tmp.push_back(30);
+		return tmp;
+	}();
+
+	try
+	{
+		std::vector<int>::const_iterator it = easyfind(v, 20);
+		std::cout << "Found: " << *it << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+}
+
 int main()
 {
 	vector();
@@ -120,6 +143,7 @@ int main()
 	deque();
 	emptyContainer();
 	notFound();
+	testConst();
 
 	return 0;
 }
