@@ -33,7 +33,7 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
-void BitcoinExchange::LoadData(const std::string& inputFile)
+void BitcoinExchange::loadData(const std::string& inputFile)
 {
 	std::ifstream file(inputFile);
 	if (!file.is_open())
@@ -68,7 +68,36 @@ void BitcoinExchange::LoadData(const std::string& inputFile)
 	}
 }
 
-void BitcoinExchange::ProcessInput(const std::string& inputFile)
+bool BitcoinExchange::isValidDate(const std::string &date)
+{
+	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
+		return false;
+
+	for (size_t i = 0; i < date.size(); i++)
+	{
+		if (i == 4 || i == 7)
+			continue;
+		if (!std::isdigit(static_cast<unsigned char>(date[i])))
+			return false;
+	}
+
+	int month = std::stoi(date.substr(5, 2));
+	int day = std::stoi(date.substr(8, 2));
+
+	if (month < 1 || month > 12)
+		return false;
+
+	static const int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+	int maxDay = daysInMonth[month - 1];
+
+	if (day < 1 || day > maxDay)
+		return false;
+
+	return true;
+}
+
+void BitcoinExchange::processInput(const std::string& inputFile)
 {
 	std::ifstream file(inputFile);
 	if (!file.is_open())
@@ -90,6 +119,12 @@ void BitcoinExchange::ProcessInput(const std::string& inputFile)
 
 		date.erase(date.find_last_not_of(" ") + 1);
 		valueStr.erase(0, valueStr.find_first_not_of(" "));
+
+		if (!isValidDate(date))
+		{
+			std::cerr << "Error: Invalid date: " << date << std::endl;
+			continue;
+		}
 
 		double value;
 		try

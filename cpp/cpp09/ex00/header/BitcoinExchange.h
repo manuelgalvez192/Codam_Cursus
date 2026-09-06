@@ -19,6 +19,7 @@
 #include <stdexcept>
 #include <iomanip>
 #include <string>
+#include <cctype>
 
 class BitcoinExchange {
 
@@ -28,8 +29,9 @@ class BitcoinExchange {
 		BitcoinExchange& operator=(const BitcoinExchange& other);
 		~BitcoinExchange();
 
-		void LoadData(const std::string& inputFile);
-		void ProcessInput(const std::string& inputFile);
+		void loadData(const std::string& inputFile);
+		bool isValidDate(const std::string &date);
+		void processInput(const std::string& inputFile);
 
 		private:
 			std::map<std::string, double> exchangeRates;
