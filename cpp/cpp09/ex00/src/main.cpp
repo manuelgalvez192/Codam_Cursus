@@ -23,8 +23,8 @@ int main(int argc, char* argv[])
 	try
 	{
 		BitcoinExchange bitcoinExchange;
-		bitcoinExchange.LoadData("src/data.csv");
-		bitcoinExchange.ProcessInput(argv[1]);
+		bitcoinExchange.loadData("src/data.csv");
+		bitcoinExchange.processInput(argv[1]);
 	}
 	catch (const std::exception& e)
 	{

@@ -81,15 +81,9 @@ void RPN::process(const std::string &expression)
 		}
 		else
 		{
-			try
-			{
-				int value = std::stoi(token);
-				push(value);
-			}
-			catch (const std::invalid_argument &)
-			{
+			if (token.size() != 1 || !std::isdigit(static_cast<unsigned char>(token[0])))
 				throw std::runtime_error("Error: Invalid token '" + token + "'");
-			}
+			push(token[0] - '0');
 		}
 	}
 
