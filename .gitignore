@@ -47,3 +47,6 @@ vendor/
 
 # Archivos de visual code
 .vscode/
+
+# Para los secrets de inception
+**/secrets/*.txt
